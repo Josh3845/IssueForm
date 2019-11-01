@@ -6,11 +6,11 @@
 
     <widgets>
         <render-mode>
-            <text type="html,vuet" location="component://MK-IssueForm/screen/IssueScreen/components/template/Header.html"/>
+            <text type="html,vuet" location="component://IssueForm/screen/IssueScreen/components/template/Header.html"/>
         </render-mode>
         <subscreens-active/>
         <render-mode>
-            <text type="html,vuet" location="component://MK-IssueForm/screen/IssueScreen/components/template/Footer.html"/>
+            <text type="html,vuet" location="component://IssueForm/screen/IssueScreen/components/template/Footer.html"/>
         </render-mode>
     </widgets>
 </screen>

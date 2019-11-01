@@ -12,7 +12,7 @@
 
     <widgets>
         <label type="h2" text="Issue Form"/>
-            <form-single name="MK-IssueForm" transition="createIssue" action="submit">
+            <form-single name="IssueForm" transition="createIssue" action="submit">
                 <field name="firstName"><default-field><text-line size="35"/></default-field></field>
                 <field name="lastName"><default-field><text-line size="35"/></default-field></field>
                 <field name="emailAddress"><default-field title="Email"><text-line size="35"/></default-field></field>            
