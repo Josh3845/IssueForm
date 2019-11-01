@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen require-authentication="anonymous-all" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd" default-menu-title="Issue Form" menu-image="glyphicon glyphicon-flag" menu-image-type="icon">
+
+    <subscreens default-item="IssueForm"/>
+
+    <widgets>
+        <render-mode>
+            <text type="html,vuet" location="component://MK-IssueForm/screen/IssueScreen/components/template/Header.html"/>
+        </render-mode>
+        <subscreens-active/>
+        <render-mode>
+            <text type="html,vuet" location="component://MK-IssueForm/screen/IssueScreen/components/template/Footer.html"/>
+        </render-mode>
+    </widgets>
+</screen>

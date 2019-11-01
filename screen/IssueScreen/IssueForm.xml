@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd" require-authentication="anonymous-all">
+
+    <transition name="createIssue" require-session-token="false" require-authentication="anonymous-all">
+        <service-call name="IssueService.create#Issue" in-map="context" out-map="context"/>
+        <default-response url="/Login"/>
+    </transition>
+
+    <actions>
+    </actions>
+
+    <widgets>
+        <label type="h2" text="Issue Form"/>
+            <form-single name="MK-IssueForm" transition="createIssue" action="submit">
+                <field name="firstName"><default-field><text-line size="35"/></default-field></field>
+                <field name="lastName"><default-field><text-line size="35"/></default-field></field>
+                <field name="emailAddress"><default-field title="Email"><text-line size="35"/></default-field></field>            
+                <field name="requestName"><default-field title="Company"><text-line size="35"/></default-field></field>
+
+                <field name="requestTypeEnumId">
+                    <default-field title="Issue Type">
+                        <widget-template-include location="component://webroot/template/screen/BasicWidgetTemplates.xml#enumDropDown">
+                            <set field="enumTypeId" value="RequestType"/>
+                            <set field="noCurrentSelectedKey" value="RqtBugFix"/>
+                        </widget-template-include>
+                    </default-field>
+                </field>
+                <field name="contentTypeEnumId">
+                    <default-field title="Content Type">
+                        <widget-template-include location="component://webroot/template/screen/BasicWidgetTemplates.xml#enumDropDown">
+                            <set field="enumTypeId" value="RequestContentType"/>
+                            <set field="allowEmpty" value="true"/>
+                        </widget-template-include>
+                    </default-field>
+                </field>
+                    <!-- <field name="priority"><default-field title="Issue Priority">
+                        <drop-down allow-empty="true">
+                            <option text="Low" key="1"/>
+                            <option text="Normal" key="2"/>
+                            <option text="High" key="3"/>
+                            <option text="Urgent" key="4"/>
+                            <option text="Immediate" key="5"/>
+                        </drop-down>
+                    </default-field></field>            -->
+                <field name="description"><default-field title="Description" tooltip="Describe how the issue occurred, the url of the issue, and any other information to help us solve the problem."><text-area rows="5" cols="50"/></default-field></field>
+                <field name="contentFile"><default-field title="Upload File" tooltip="Upload a screenshot or picture of the issue."><file/></default-field></field>
+
+                <field name="submitButton"><default-field title="Submit"><submit action=""/></default-field></field>
+
+                    <!-- <field-layout>
+                        <field-row><field-ref name=""/><field-ref name=""/></field-row>
+                        <field-row><field-ref name=""/><field-ref name=""/></field-row> 
+                        <fields-not-referenced/>
+                    </field-layout> -->
+            </form-single>
+    </widgets>
+</screen>

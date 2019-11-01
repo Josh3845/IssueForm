@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" require-session-token="false" require-authentication="anonymous-all" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
+    <service verb="create" noun="Issue" authenticate="anonymous-all">
+        <in-parameters>
+            <parameter name="firstName" required="true"/>
+            <parameter name="lastName" required="true"/>
+            <parameter name="emailAddress" required="true">
+                <text-email/>
+            </parameter>
+            <parameter name="requestTypeEnumId" required="true"/>
+            <parameter name="requestName" required="true"/>
+            <parameter name="description" required="true"/>
+            <parameter name="contentFile" type="java.io.File"/>
+
+            <!-- Future feature -->
+            <!-- <parameter name="priority" required="true"/> -->
+            <parameter name="contentTypeEnumId"/>
+        </in-parameters>
+
+        <out-parameters>
+        </out-parameters>
+
+        <actions>
+
+            <!-- Create Person -->
+            <set field="email" from="emailAddress"/>
+            <set field="infoString" from="emailAddress"/>
+            <service-call name="mantle.party.PartyServices.create#Person" in-map="context" out-map="context"/>
+
+            <!-- Create Organization -->
+            <!-- <service-call name="create#mantle.party.Organization" in-map="context"/> -->
+
+            <!-- Create Contact Request -->
+            <service-call name="mantle.request.RequestServices.create#ContactRequest" in-map="context" out-map="context" />
+
+            <!-- ADD CONTENT FILE -->
+            <service-call name="mantle.request.RequestServices.create#RequestContent" in-map="context" out-map="context"/>  
+
+            <!-- Add Email Comment -->
+            <!-- <set field="subject" value="Email"/>
+            <set field="body" from="emailAddress"/>
+            <service-call name="mantle.request.RequestServices.add#RequestComment" in-map="context" out-map="context" /> -->  
+                            
+        </actions>
+    </service>
+</services>
